@@ -21,8 +21,8 @@ createServer()
         console.log('started!')
         var socketServer = io(server)
 
-        const chatServer = new ChatServer(socketServer);
-
+        new ChatServer(socketServer)
+            .run();
 
     })
     .catch((err) => {

@@ -1,6 +1,7 @@
-var io = require('socket.io-client')
-var readline = require('readline')
-var os = require('os')
+const io = require('socket.io-client')
+const readline = require('readline')
+const os = require('os')
+const colors = require('colors/safe')
 
 
 const cli = readline.createInterface({
@@ -30,25 +31,25 @@ cli.on('line', (line) => {
         const cmd = line.slice(1).split(' ')
         const cmdName = cmd[0]
         const cmdArgs = cmd.slice(1)
-        socket.emit('command', { cmdName: cmdName, cmdArgs: cmdArgs })
+        socket.emit('chat:command', { cmdName: cmdName, cmdArgs: cmdArgs })
     }
     else {
-        socket.emit('chat', line)
+        socket.emit('chat:message', line)
     }
 
 })
 
 
-socket.on('chat', (message) => {
+socket.on('chat:message', (message) => {
     writeLine(message);
 })
 
-socket.on('command', (message) => {
-    writeLine(message)
+socket.on('chat:command', (message) => {
+    writeLine(colors.green(message))
 })
 
-socket.on('error', (errorMessage) => {
-    writeLine(errorMessage)
+socket.on('chat:error', (errorMessage) => {
+    writeLine(colors.red(errorMessage))
 })
 
 

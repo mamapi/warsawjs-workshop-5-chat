@@ -1,12 +1,12 @@
 class ClientSession {
     constructor(socket) {
         this._socket = socket;
-        this._isAuth = false;
+        this.IsAuth = false;
     }
 
 
     get socket() {
-        return _this.socket
+        return this._socket
     }
 
 
