@@ -12,11 +12,11 @@ $ npm install
 ### running server:
 
 ```
-$ npm run server
+$ node server.js
 ```
 
 ### running client:
 
 ```
-$ npm run client
+$ node client.js
 ```
